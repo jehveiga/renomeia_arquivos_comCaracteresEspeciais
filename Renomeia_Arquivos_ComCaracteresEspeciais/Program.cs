@@ -9,7 +9,10 @@ if (Directory.Exists(pasta))
 
     foreach (FileInfo arquivo in diretorio.GetFiles())
     {
-        string novoNome = RemoverCaracteresEspeciais(arquivo.Name);
+        string nomeSemExtensao = Path.GetFileNameWithoutExtension(arquivo.Name);
+        string extensao = Path.GetExtension(arquivo.Name);
+
+        string novoNome = RemoverCaracteresEspeciais(nomeSemExtensao) + extensao;
         string novoCaminho = Path.Combine(arquivo.DirectoryName, novoNome);
 
         if (arquivo.Name != novoNome)
